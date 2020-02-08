@@ -16,7 +16,7 @@ let package = Package(
         .package(url: "https://github.com/denizak/algorithm.git", .branch("master"))
     ],
     targets: [
-        .target(name: "App", dependencies: ["FluentSQLite", "Vapor", "lib"]),
+        .target(name: "App", dependencies: ["FluentSQLite", "Vapor", "Sort"]),
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"])
     ]
