@@ -15,10 +15,18 @@ final class SortController {
     }
 
     private func sortUsingMultipleMethod(items: [Int]) -> [Result] {
-        let heapResult = self.sortItems(name: "heap sort", items: items, use: heapSorted(items:))
-        let quickResult = self.sortItems(name: "quick sort", items: items, use: quickSorted(array:))
-
-        return [heapResult, quickResult]
+        let actions: [String: ([Int]) -> [Int]] = 
+            [
+                "heap sort": heapSorted(items:),
+                "quick sort": quickSorted(array:),
+                "merge sort": mergeSorted(array:),
+                "insertion sort": insertionSorted(array:)
+            ]
+            
+        return actions.keys.map {
+            let action = actions[$0]!
+            return sortItems(name: $0, items: items, use: action)
+        }
     }
 
     private func sortItems(name: String, items: [Int], use action: ([Int]) -> [Int]) -> Result {
